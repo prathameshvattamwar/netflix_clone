@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" class="logo">
+            </div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li class="nav-item active">Home</li>
+                    <li class="nav-item">TV Shows</li>
+                    <li class="nav-item">Movies</li>
+                    <li class="nav-item">New & Popular</li>
+                    <li class="nav-item">My List</li>
+                    <li class="nav-item">Browse by Languages</li>
+                </ul>
+            </div>
+            <div class="right-container">
+                <i class="fa-solid fa-magnifying-glass icon"></i>
+                <i class="fa-solid fa-bell icon"></i>
+                <div class="profile-container">
+                    <img src="profile_icon2.png" alt="Profile Image" class="profile-pic">
+                    <div class="profile-dropdown">
+                        <i class="fa-solid fa-caret-down icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-links">
+                                <img src="profile_icon2.png" alt="Profile" class="dropdown-profile">
+                                <span>Guest</span>
+                            </div>
+                            <div class="profile-links">
+                                <img src="profile_icon2.png" alt="Profile" class="dropdown-profile">
+                                <span>User</span>
+                            </div>
+                            <div class="profile-links">Manage Profiles</div>
+                            <div class="profile-links">Transfer Profile</div>
+                            <div class="profile-links">Account</div>
+                            <div class="profile-links">Help Center</div>
+                            <div class="profile-links" id="logout-btn">Sign out of Netflix</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="hero">
+        <div class="hero-content">
+            <!-- <img src="bullet_train.jpg" alt="Movie Title" class="hero-title"> -->
+            <p class="hero-desc">
+                Five assassins aboard a swiftly-moving bullet train discover that their missions have something in common.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-play"><i class="fa-solid fa-play"></i> Play</button>
+                <button class="btn btn-more"><i class="fa-solid fa-circle-info"></i> More Info</button>
+            </div>
+        </div>
+        <div class="shadow-overlay"></div>
+    </div>
+
+    <!-- Content Rows -->
+    <div class="movies-container">
+        <!-- Trending Now -->
+        <div class="movies-row">
+            <h2 class="row-title">Trending Now</h2>
+            <div class="row-posters" id="trending">
+                <!-- Posters will be populated via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Top Rated -->
+        <div class="movies-row">
+            <h2 class="row-title">Top Rated</h2>
+            <div class="row-posters" id="top-rated">
+                <!-- Posters will be populated via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Action Movies -->
+        <div class="movies-row">
+            <h2 class="row-title">Action Thrillers</h2>
+            <div class="row-posters" id="action">
+                <!-- Posters will be populated via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Comedies -->
+        <div class="movies-row">
+            <h2 class="row-title">Comedies</h2>
+            <div class="row-posters" id="comedy">
+                <!-- Posters will be populated via JavaScript -->
+            </div>
+        </div>
+
+        <!-- My List -->
+        <div class="movies-row">
+            <h2 class="row-title">My List</h2>
+            <div class="row-posters" id="my-list">
+                <!-- My List will be populated via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Movie Modal -->
+    <div class="modal" id="movie-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-info">
+                <div class="modal-poster">
+                    <img id="modal-poster-img" src="" alt="Movie Poster">
+                </div>
+                <div class="modal-details">
+                    <h2 id="modal-title"></h2>
+                    <div class="modal-metadata">
+                        <span id="modal-year"></span>
+                        <span id="modal-rating"></span>
+                        <span id="modal-duration"></span>
+                    </div>
+                    <p id="modal-description"></p>
+                    <div class="modal-buttons">
+                        <button class="btn btn-play"><i class="fa-solid fa-play"></i> Play</button>
+                        <button class="btn btn-list" id="add-to-list"><i class="fa-solid fa-plus"></i> My List</button>
+                        <button class="btn btn-list" id="remove-from-list" style="display: none;"><i class="fa-solid fa-check"></i> Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal (initially hidden) -->
+    <div class="login-modal" id="login-modal">
+        <div class="login-container">
+            <h2>Sign In</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="email" id="email" required placeholder="Email or phone number">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" required placeholder="Password">
+                </div>
+                <button type="submit" class="login-btn">Sign In</button>
+                <div class="form-footer">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="help-link">Need help?</a>
+                </div>
+            </form>
+            <div class="login-signup">
+                <p>New to Netflix? <a href="#">Sign up now</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-social">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+            <div class="footer-links">
+                <div class="footer-row">
+                    <a href="#">Audio Description</a>
+                    <a href="#">Investor Relations</a>
+                    <a href="#">Legal Notices</a>
+                </div>
+                <div class="footer-row">
+                    <a href="#">Help Center</a>
+                    <a href="#">Jobs</a>
+                    <a href="#">Cookie Preferences</a>
+                </div>
+                <div class="footer-row">
+                    <a href="#">Gift Cards</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Corporate Information</a>
+                </div>
+                <div class="footer-row">
+                    <a href="#">Media Center</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <button class="service-code">Service Code</button>
+            <p class="copyright">© 1997-2025 Netflix, Inc.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-item active">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </div>
+        <div class="mobile-nav-item">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Search</span>
+        </div>
+        <div class="mobile-nav-item">
+            <i class="fa-solid fa-download"></i>
+            <span>Downloads</span>
+        </div>
+        <div class="mobile-nav-item">
+            <i class="fa-solid fa-ellipsis"></i>
+            <span>More</span>
+        </div>
+    </div>
+
+    <!-- Grid Toggle Button -->
+    <button class="grid-toggle-btn">
+        <i class="fa-solid fa-list"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
